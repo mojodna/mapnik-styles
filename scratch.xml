@@ -1,0 +1,160 @@
+<Map bgcolor="#99ccff" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over">
+  <Style name="polygon style 1">
+        <Rule><PolygonSymbolizer><CssParameter name="fill">#f6ffee</CssParameter></PolygonSymbolizer></Rule>
+        </Style>
+    <Layer name="layer 4" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" status="on">
+    <StyleName>polygon style 1</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password">osm</Parameter>
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">coastline</Parameter>
+    </Datasource>
+  </Layer>
+  <Style name="boundary">
+    <Rule>
+      <Filter>[boundary] = 'administrative'</Filter>
+      <LineSymbolizer>
+        <CssParameter name="stroke">#666666</CssParameter>
+        <CssParameter name="stroke-width">0.5</CssParameter>
+      </LineSymbolizer>
+      <TextSymbolizer avoid_edges="true"
+                      dy="0" face_name="DejaVu Sans Bold"
+                      fill="#222" halo_fill="#eeffee"
+                      halo_radius="1"
+                      max_char_angle_delta="20"
+                      min_distance="100"
+                      name="name"
+                      placement="line" size="12" />
+    </Rule>
+  </Style>
+  <Style name="public">
+    <!--
+    <Rule>
+      <Filter>[landuse] = 'farm'</Filter>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#999933</CssParameter>
+      </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>[landuse] = 'reservoir'</Filter>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#3366FF</CssParameter>
+      </PolygonSymbolizer>
+    </Rule>
+    -->
+    <Rule>
+      <Filter>[landuse] = 'forest' or
+              [landuse] = 'wood' or
+              [landuse] = 'meadow' or
+              [landuse] = 'conservation' or
+              [landuse] = 'village_green' or
+              [landuse] = 'recreation_ground' or
+              [landuse] = 'vineyard' or
+              [leisure] = 'nature_reserve' or
+              [leisure] = 'park' or
+              [leisure] = 'common' or
+              [leisure] = 'playground' or
+              [leisure] = 'garden' or
+              [leisure] = 'golf_course' or
+              [leisure] = 'recreation_ground' or
+              [natural] = 'wood'</Filter>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#bea</CssParameter>
+      </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>[landuse] = 'military' or
+              [military] &lt;&gt; ''</Filter>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#ffa8a8</CssParameter>
+        <CssParameter name="fill-opacity">0.4</CssParameter>
+      </PolygonSymbolizer>
+    </Rule>
+    <Rule>
+      <Filter>[natural] = 'beach'</Filter>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#ffe0c0</CssParameter>
+      </PolygonSymbolizer>
+    </Rule>
+  </Style>
+  <Style name="water">
+    <Rule>
+      <Filter>[natural] = 'water' or
+              [natural] = 'lake' or
+              [landuse] = 'reservoir' or
+              [landuse] = 'basin' or
+              [waterway] = 'river' or
+              [waterway] = 'canal' or
+              [waterway] = 'stream'</Filter>
+      <PolygonSymbolizer>
+        <CssParameter name="fill">#adf</CssParameter>
+      </PolygonSymbolizer>
+    </Rule>
+  </Style>
+  <Style name="place">
+    <Rule>
+      <Filter>[place] = 'city' or
+              [place] = 'town' or
+              [place] = 'suburb' or
+              [place] = 'village' or
+              [place] = 'locality' or
+              [place] = 'hamlet'</Filter>
+      <TextSymbolizer avoid_edges="true"
+                      dy="0" face_name="DejaVu Sans Condensed Bold"
+                      fill="#222" halo_fill="#eeffee"
+                      halo_radius="1"
+                      name="name"
+                      size="10" />
+    </Rule>
+  </Style>
+  <Layer name="polygons" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" status="on">
+    <StyleName>boundary</StyleName>
+    <StyleName>public</StyleName>
+    <StyleName>water</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password">osm</Parameter>
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">osm_polygon</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="lines" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" status="on">
+    <StyleName>boundary</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password">osm</Parameter>
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">osm_line</Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="ways" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs +over" status="on">
+    <StyleName>place</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password">osm</Parameter>
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">osm_point</Parameter>
+    </Datasource>
+  </Layer>
+</Map>

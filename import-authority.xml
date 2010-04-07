@@ -1,0 +1,187 @@
+<Map bgcolor="#aaddff" srs="+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs">
+  <Style name="polygon style 1">
+        <Rule><PolygonSymbolizer><CssParameter name="fill">#f8f8f8</CssParameter></PolygonSymbolizer></Rule>
+        </Style>
+    <Layer name="layer 4" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="on">
+    <StyleName>polygon style 1</StyleName>
+        <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">coastline</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Style name="polygon style 5">
+        <Rule><PolygonSymbolizer><CssParameter name="fill">#bbeeaa</CssParameter></PolygonSymbolizer></Rule>
+        </Style>
+    <Layer name="layer 8" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="on">
+    <StyleName>polygon style 5</StyleName>
+        <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">       (SELECT * FROM planet_osm_polygon        WHERE leisure &lt;&gt; ''        OR landuse IN ('campus', 'cemetary', 'conservation', 'forest', 'grass',                       'historical', 'meadow', 'monument', 'nature_reserve',                       'open_space', 'orchard', 'park', 'pitch', 'plaza',                       'public', 'recreation_ground', 'reservoir',                       'village_green', 'vineyard', 'vineyards', 'vinyard',                       'wood')        OR "natural" IN ('beach', 'cliff', 'fell', 'forest', 'glacier', 'grass',                         'heath', 'land', 'meadow', 'nature_reserve', 'vineyard',                         'wood')       ) AS open_spaces       </Parameter>
+    </Datasource>
+  </Layer>
+
+  <Style name="polygon style 9">
+        <Rule><PolygonSymbolizer><CssParameter name="fill">#aaddff</CssParameter></PolygonSymbolizer></Rule>
+        </Style>
+    <Layer name="layer 12" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="on">
+    <StyleName>polygon style 9</StyleName>
+        <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      
+      <Parameter name="table">       (SELECT * FROM planet_osm_polygon        WHERE landuse IN ('water')        OR "natural" IN ('Water', 'bay', 'lake', 'marsh', 'pond', 'water',                         'wetland', 'wetlands')       ) AS open_spaces       </Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer 16" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="off">
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">(select ST_Collect(way) as way from planet_osm_line) as lines</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Style name="line style 18">
+        <Rule><Filter>[kind] = 'major_road'</Filter><LineSymbolizer><CssParameter name="stroke">#ff6666</CssParameter><CssParameter name="stroke-width">4.0</CssParameter></LineSymbolizer></Rule>
+        <Rule><Filter>[kind] = 'minor_road'</Filter><LineSymbolizer><CssParameter name="stroke">#999999</CssParameter><CssParameter name="stroke-width">6.0</CssParameter></LineSymbolizer><LineSymbolizer><CssParameter name="stroke">#ffffff</CssParameter><CssParameter name="stroke-width">4.0</CssParameter></LineSymbolizer></Rule>
+        <Rule><Filter>[kind] = 'path'</Filter><LineSymbolizer><CssParameter name="stroke">#7f7c57</CssParameter><CssParameter name="stroke-dasharray">1,2</CssParameter><CssParameter name="stroke-width">2.0</CssParameter></LineSymbolizer></Rule>
+        <Rule><Filter>[kind] = 'rail'</Filter><LineSymbolizer><CssParameter name="stroke">#333333</CssParameter><CssParameter name="stroke-width">4.0</CssParameter></LineSymbolizer><LineSymbolizer><CssParameter name="stroke">#333333</CssParameter><CssParameter name="stroke-dasharray">3,3</CssParameter><CssParameter name="stroke-width">2.0</CssParameter></LineSymbolizer></Rule>
+        </Style>
+    <Layer name="layer 20" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="on">
+    <StyleName>line style 18</StyleName>
+        <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">         (select ST_Collect(way) as way,           highway,           railway,           (CASE WHEN layer ~ E'^-?[[:digit:]]+(\.[[:digit:]]+)?$' THEN CAST (layer AS FLOAT)             ELSE 0             END) AS coalesced_layer,           (CASE WHEN highway IN ('motorway', 'motorway_link') THEN 0             WHEN highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway') THEN 1             WHEN railway IN ('rail', 'spur', 'subway', 'light_rail', 'tram', 'abandoned', 'disused', 'monorail') THEN 2             WHEN highway IN ('trunk', 'trunk_link', 'primary', 'primary_link') THEN 3             WHEN highway = 'secondary' THEN 4             WHEN highway = 'tertiary' THEN 5             ELSE 9 END) AS priority,           (CASE WHEN highway IN ('secondary', 'trunk', 'trunk_link', 'primary', 'primary_link', 'motorway', 'motorway_link') THEN 'major_road'             WHEN highway IN ('residential', 'unclassified', 'service', 'minor', 'road', 'tertiary') THEN 'minor_road'             WHEN railway IN ('rail', 'spur', 'subway', 'light_rail', 'tram', 'abandoned', 'disused', 'monorail') THEN 'rail'             WHEN highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway') THEN 'path'             ELSE '' END) AS kind,           (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'             ELSE 'no' END) AS is_tunnel,           (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'             ELSE 'no' END) AS is_bridge            FROM (SELECT * FROM planet_osm_line WHERE ST_Intersects(way, !bbox!)) AS bounded_lines            WHERE railway IN ('rail', 'spur', 'subway', 'light_rail', 'tram', 'abandoned', 'disused', 'monorail')             OR highway IN ('secondary', 'trunk', 'trunk_link', 'primary', 'primary_link', 'motorway', 'motorway_link')             OR highway IN ('residential', 'unclassified', 'service', 'minor', 'road', 'tertiary')             OR highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway')            GROUP BY highway, railway, coalesced_layer, priority, kind, is_tunnel, is_bridge           ORDER BY coalesced_layer ASC, priority DESC)          AS collected_lines       </Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer 24" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="off">
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">planet_osm_point</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Style name="text style 28 (name)">
+        <Rule><MaxScaleDenominator>399999</MaxScaleDenominator><TextSymbolizer face_name="DejaVu Sans Book" fill="#333333" halo_fill="#ffffff" halo_radius="1" name="name" placement="line" size="10" /></Rule>
+        </Style>
+    <Layer name="layer 30" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="on">
+    <StyleName>text style 28 (name)</StyleName>
+        <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">         (select way,           name,           highway,           railway,           (CASE WHEN layer ~ E'^-?[[:digit:]]+(\.[[:digit:]]+)?$' THEN CAST (layer AS FLOAT)             ELSE 0             END) AS coalesced_layer,           (CASE WHEN highway IN ('motorway', 'motorway_link') THEN 0             WHEN highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway') THEN 1             WHEN railway IN ('rail', 'spur', 'subway', 'light_rail', 'tram', 'abandoned', 'disused', 'monorail') THEN 2             WHEN highway IN ('trunk', 'trunk_link', 'primary', 'primary_link') THEN 3             WHEN highway = 'secondary' THEN 4             WHEN highway = 'tertiary' THEN 5             ELSE 9 END) AS priority,           (CASE WHEN highway IN ('secondary', 'trunk', 'trunk_link', 'primary', 'primary_link', 'motorway', 'motorway_link') THEN 'major_road'             WHEN highway IN ('residential', 'unclassified', 'service', 'minor', 'road', 'tertiary') THEN 'minor_road'             WHEN railway IN ('rail', 'spur', 'subway', 'light_rail', 'tram', 'abandoned', 'disused', 'monorail') THEN 'rail'             WHEN highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway') THEN 'path'             ELSE '' END) AS kind,           (CASE WHEN tunnel IN ('yes', 'true') THEN 'yes'             ELSE 'no' END) AS is_tunnel,           (CASE WHEN bridge IN ('yes', 'true') THEN 'yes'             ELSE 'no' END) AS is_bridge            FROM (SELECT * FROM planet_osm_line WHERE ST_Intersects(way, !bbox!)) AS bounded_lines            WHERE railway IN ('rail', 'spur', 'subway', 'light_rail', 'tram', 'abandoned', 'disused', 'monorail')             OR highway IN ('secondary', 'trunk', 'trunk_link', 'primary', 'primary_link', 'motorway', 'motorway_link')             OR highway IN ('residential', 'unclassified', 'service', 'minor', 'road', 'tertiary')             OR highway IN ('footpath', 'track', 'footway', 'steps', 'pedestrian', 'path', 'cycleway')            ORDER BY coalesced_layer ASC, priority DESC)          AS collected_lines       </Parameter>
+    </Datasource>
+  </Layer>
+  <Layer name="layer 34" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="off">
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="table">(select * from planet_osm_point order by z_order desc) as place_names</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer 38" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="off">
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="row_limit">5</Parameter>
+      <Parameter name="table">(select * from planet_osm_line where planet_osm_line.natural in ('water','lake','bay') or landuse in ('reservoir','basin') or waterway in ('river', 'canal', 'stream', 'riverbank') or place='island' order by z_order, way_area desc) as water_names</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer 42" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="off">
+    <StyleName>water-label</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="row_limit">5</Parameter>
+      <Parameter name="table">(select * from planet_osm_polygon where planet_osm_polygon.natural in ('water','lake','bay') or landuse in ('reservoir','basin') or waterway in ('river', 'canal', 'stream', 'riverbank') or place='island' order by z_order, way_area desc) as water_names</Parameter>
+    </Datasource>
+  </Layer>
+
+  <Layer name="layer 46" srs="+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs" status="off">
+    <StyleName>water-label</StyleName>
+    <Datasource>
+      <Parameter name="type">postgis</Parameter>
+      <Parameter name="host">localhost</Parameter>
+      <Parameter name="port">5432</Parameter>
+      <Parameter name="user">osm</Parameter>
+      <Parameter name="password" />
+      <Parameter name="dbname">osm</Parameter>
+      <Parameter name="estimate_extent">false</Parameter>
+      <Parameter name="extent">-20037508,-19929239,20037508,19929239</Parameter>
+      <Parameter name="row_limit">5</Parameter>
+      <Parameter name="table">(select * from planet_osm_point where planet_osm_point.natural in ('water','lake','bay') or landuse in ('reservoir','basin') or waterway in ('river', 'canal', 'stream', 'riverbank') or place='island' order by z_order desc) as water_names</Parameter>
+    </Datasource>
+  </Layer>
+
+  
+  <Layer name="NIKWEB" srs="+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs">  
+  </Layer>
+</Map>
